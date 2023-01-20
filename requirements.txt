@@ -1,0 +1,6 @@
+gspread_pandas
+streamlit
+google.oauth2
+pyrebase4
+retrying
+pandas
