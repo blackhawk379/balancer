@@ -178,7 +178,7 @@ with payments:
                 new = list(salarySheet['Name'].astype(str) + " - " + salarySheet['Empid'])
                 new.insert(0, 'Select Id')
 
-                select = st.selectbox('Select Id:', list(new), label_visibility='collapsed')
+                select = st.selectbox('Select Id:', list(new), label_visibility='collapsed', key = 1)
                 if select == 'Select Id':
                     st.dataframe(paymentdf)
                 else:
@@ -252,7 +252,7 @@ with payments:
                 salarySheet = get_sheet('SalarySheet')
                 new = list(salarySheet['Name'].astype(str) + " - " + salarySheet['Empid'])
                 new.insert(0, 'Select Id')
-                select = st.selectbox('Select Id:', list(new), label_visibility='collapsed')
+                select = st.selectbox('Select Id:', list(new), label_visibility='collapsed', key = 2)
 
                 if select == 'Select Id':
                     st.dataframe(paymentdf)
@@ -286,7 +286,7 @@ with balances:
                 new = list(salarySheet['Name'].astype(str) + " - " + salarySheet['Empid'])
                 new.insert(0, 'Select Id')
 
-                select = st.selectbox('Select Id:', list(new), label_visibility='collapsed')
+                select = st.selectbox('Select Id:', list(new), label_visibility='collapsed', key = 3)
                 if select == 'Select Id':
                     st.dataframe(balance)
                 else:
@@ -315,7 +315,7 @@ with salary:
                 new = list(salarySheet['Name'].astype(str) + " - " + salarySheet['Empid'])
                 new.insert(0, 'Select Id')
 
-                select = st.selectbox('Select Id:', list(new), label_visibility='collapsed')
+                select = st.selectbox('Select Id:', list(new), label_visibility='collapsed', key = 4)
                 if select == 'Select Id':
                     st.dataframe(salary)
                 else:
