@@ -300,11 +300,13 @@ with salary:
     else:
         role = get_info('Role', session['user'])
         empid = get_info('Empid', session['user'])
+        name = get_info('Name', session['user'])
         salary = get_sheet('SalarySheet')
         paymentdf = get_sheet('Payments')
         balance = get_sheet('BalanceSheet')
         if role == 'Simple':
-            st.header('Your Salary Distribution')
+            st.header('Your Salary and Payment Details')
+            st.write(empid+' - '+name)
             st.write('Current Balance' + str(list(balance.loc[balance['Empid'] == empid]['Current Balance'])[0]))
             col1, col2 = st.columns(2)
             index = salary.index[salary['Empid'] == empid].tolist()[0]
@@ -313,7 +315,8 @@ with salary:
         else:
             personal, allBalance = st.tabs(['Personal', 'All'])
             with personal:
-                st.header('Your Salary Statement')
+                st.header('Your Salary and Payment Details')
+                  st.write(empid+' - '+name)
                 st.write('Current Balance' + str(list(balance.loc[balance['Empid'] == empid]['Current Balance'])[0]))
                 col11, col21 = st.columns(2)
                 index = salary.index[salary['Empid'] == empid].tolist()[0]
