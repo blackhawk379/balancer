@@ -316,7 +316,7 @@ with salary:
             personal, allBalance = st.tabs(['Personal', 'All'])
             with personal:
                 st.header('Your Salary and Payment Details')
-                  st.write(empid+' - '+name)
+                st.write(empid+' - '+name)
                 st.write('Current Balance' + str(list(balance.loc[balance['Empid'] == empid]['Current Balance'])[0]))
                 col11, col21 = st.columns(2)
                 index = salary.index[salary['Empid'] == empid].tolist()[0]
