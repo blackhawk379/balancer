@@ -320,7 +320,7 @@ with salary:
                 if select == 'Select Id':
                     st.dataframe(salary)
                 else:
-                    index = salary.index[salary['Empid'] == empid].tolist()[0]
+                    index = salary.index[salary['Empid'] == select].tolist()[0]
                     st.dataframe(pd.DataFrame(list(zip(list(salary.columns), list(salary.iloc[index])))))
 
 with setting:
