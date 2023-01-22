@@ -301,16 +301,21 @@ with salary:
         role = get_info('Role', session['user'])
         empid = get_info('Empid', session['user'])
         salary = get_sheet('SalarySheet')
+        paymentdf = get_sheet('Payments')
         if role == 'Simple':
             st.header('Your Salary Distribution')
+            col1, col2 = st.columns(2)
             index = salary.index[salary['Empid'] == empid].tolist()[0]
-            st.dataframe(pd.DataFrame(list(zip(list(salary.columns), list(salary.iloc[index])))))
+            col1.dataframe(pd.DataFrame(list(zip(list(salary.columns), list(salary.iloc[index])))))
+            col2.dataframe(paymentdf.loc[paymentdf['Empid'] == empid])
         else:
             personal, allBalance = st.tabs(['Personal', 'All'])
             with personal:
                 st.header('Your Salary Distribution')
+                col11, col21 = st.columns(2)
                 index = salary.index[salary['Empid'] == empid].tolist()[0]
-                st.dataframe(pd.DataFrame(list(zip(list(salary.columns), list(salary.iloc[index])))))
+                col11.dataframe(pd.DataFrame(list(zip(list(salary.columns), list(salary.iloc[index])))))
+                col21.dataframe(paymentdf.loc[paymentdf['Empid'] == empid])
             with allBalance:
                 st.header("Salary Sheet")
                 salarySheet = get_sheet('SalarySheet')
