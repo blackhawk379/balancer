@@ -303,23 +303,25 @@ with salary:
         salary = get_sheet('SalarySheet')
         if role == 'Simple':
             st.header('Your Salary Distribution')
-            st.dataframe(salary.loc[salary['Empid'] == empid])
+            index = salary.index[salary['Empid'] == empid].tolist()[0]
+            st.dataframe(pd.DataFrame(list(zip(list(salary.columns), list(salary.iloc[index])))))
         else:
             personal, allBalance = st.tabs(['Personal', 'All'])
             with personal:
                 st.header('Your Salary Distribution')
-                st.dataframe(salary.loc[salary['Empid'] == empid])
+                index = salary.index[salary['Empid'] == empid].tolist()[0]
+                st.dataframe(pd.DataFrame(list(zip(list(salary.columns), list(salary.iloc[index])))))
             with allBalance:
                 st.header("Salary Sheet")
                 salarySheet = get_sheet('SalarySheet')
                 new = list(salarySheet['Name'].astype(str) + " - " + salarySheet['Empid'])
                 new.insert(0, 'Select Id')
-
                 select = st.selectbox('Select Id:', list(new), label_visibility='collapsed', key = 4)
                 if select == 'Select Id':
                     st.dataframe(salary)
                 else:
-                    st.dataframe(salary.loc[salary['Empid'] == select[-4:]])
+                    index = salary.index[salary['Empid'] == empid].tolist()[0]
+                    st.dataframe(pd.DataFrame(list(zip(list(salary.columns), list(salary.iloc[index])))))
 
 with setting:
     if 'user' not in session:
