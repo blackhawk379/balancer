@@ -281,8 +281,16 @@ with balances:
                 st.header('Your Balances')
                 st.dataframe(balance.loc[balance['Empid'] == empid])
             with allBalance:
-                st.header('Balance Sheet')
-                st.dataframe(balance)
+                st.header("Balance Sheet")
+                salarySheet = get_sheet('SalarySheet')
+                new = list(salarySheet['Name'].astype(str) + " - " + salarySheet['Empid'])
+                new.insert(0, 'Select Id')
+
+                select = st.selectbox('Select Id:', list(new), label_visibility='collapsed')
+                if select == 'Select Id':
+                    st.dataframe(balance)
+                else:
+                    st.dataframe(balance.loc[balance['Empid'] == select[-4:]])
 
 with salary:
     if 'user' not in session:
@@ -302,8 +310,16 @@ with salary:
                 st.header('Your Salary Distribution')
                 st.dataframe(salary.loc[salary['Empid'] == empid])
             with allBalance:
-                st.header('Salary Sheet')
-                st.dataframe(salary)
+                st.header("Salary Sheet")
+                salarySheet = get_sheet('SalarySheet')
+                new = list(salarySheet['Name'].astype(str) + " - " + salarySheet['Empid'])
+                new.insert(0, 'Select Id')
+
+                select = st.selectbox('Select Id:', list(new), label_visibility='collapsed')
+                if select == 'Select Id':
+                    st.dataframe(salary)
+                else:
+                    st.dataframe(salary.loc[salary['Empid'] == select[-4:]])
 
 with setting:
     if 'user' not in session:
