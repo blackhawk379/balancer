@@ -122,6 +122,9 @@ salarySheet = get_sheet('SalarySheet')
 employeeList = list(salarySheet['EmpId'] + " - " + salarySheet['Name'].astype(str))
 employeeList.insert(0, 'Select Id')
 
+nEmpIdList = salarySheet[salarySheet['Account'] == 'Not Created']['EmpId']
+nonUserList = [i + " - " + salarySheet[salarySheet['EmpId'] == i]['Name'].astype(str) for i in nEmpIdList]
+
 home, payments, balances, salary, setting = st.tabs(["Home", "Payments", "Balances", "Salary", "Settings"])
 with home:
     if no_user():
@@ -150,7 +153,7 @@ with home:
             if no_user():
                 placeHolder = st.empty()
                 with placeHolder.form(key='signup', clear_on_submit=True):
-                    name = st.selectbox("Name", employeeList, label_visibility='collapsed')
+                    name = st.selectbox("Name", noUserList, label_visibility='collapsed')
                     email = st.text_input("E-mail")
                     col1, col2 = st.columns(2)
                     password = col1.text_input("Create Password", type="password")
@@ -167,6 +170,7 @@ with home:
                             st.success('Your account is created successfully')
                             send_verification()
                             empId, name = name[:4], name[7:]
+                            salarySheet.loc[salarySheet['EmpId'] == empId]['Account'] = 'Created'
                             set_info()
                             a, role, b, Id = get_info()
                             st.balloons()
