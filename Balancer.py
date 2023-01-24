@@ -85,6 +85,7 @@ def show_logout(key):
 def everything_alright(tab):
     if 'user' not in session: st.header('Login to access ' + tab)
     elif session['verify']: st.header('Verify email to access ' + tab)
+    print(('user' in session) and session['verify'])
     return ('user' in session) and session['verify']
 
 
