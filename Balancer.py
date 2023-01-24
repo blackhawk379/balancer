@@ -75,7 +75,7 @@ def show_info():
 def show_logout(key):
     st.header("Thank You! Visit Again :ribbon:")
     p1 = st.empty()
-    btnOut = placeHolder.button('Logout', key=key)
+    btnOut = p1.button('Logout', key=key)
     if btnOut:
         p1.empty()
         session.pop('user')
