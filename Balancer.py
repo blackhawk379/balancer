@@ -233,7 +233,7 @@ with payments:
                             # Dataframe
                             prev = update_df(name[-4:], int(amount))
                             # Entry Array
-                            entry = [name[-4:], date.strftime("%d.%m.%Y"), name[:-7], amount, prev, prev - int(amount)]
+                            entry = [name[:4], date.strftime("%d.%m.%Y"), name[7:], amount, prev, prev - int(amount)]
                             # Adding Entry to Google Sheet
                             spread.update_cells('A' + str(session['last']), 'F' + str(session['last']), entry)
                             session['last'] += 1
