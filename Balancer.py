@@ -231,7 +231,7 @@ with payments:
                         if _name == 'Select Id': st.error("Please select an employee!")
                         else:
                             # Dataframe
-                            prev = update_df(_name[-4:], int(amount))
+                            prev = update_df(_name[:4], int(amount))
                             # Entry Array
                             entry = [_name[:4], date.strftime("%d.%m.%Y"), _name[7:], amount, prev, prev - int(amount)]
                             # Adding Entry to Google Sheet
