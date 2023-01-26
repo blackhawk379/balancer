@@ -131,9 +131,9 @@ employeeList.insert(0, 'Select Id')
 nonUserList = ['Select Id']
 nEmpIdList = salarySheet.loc[salarySheet['Account'] == 'Not Created']['EmpId']
 nNameList = salarySheet.loc[salarySheet['Account'] == 'Not Created']['Name']
-for i in range(nEmpIdList): nonUserList.append(i)
+for i in nEmpIdList: nonUserList.append(i)
 nIndex = 1
-for i in range(nNameList): 
+for i in nNameList: 
     nonUserList[nIndex] += (" - " + i)
     nIndex += 1
 home, payments, balances, salary, setting = st.tabs(["Home", "Payments", "Balances", "Salary", "Settings"])
