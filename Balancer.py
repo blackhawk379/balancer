@@ -51,7 +51,7 @@ def get_real(key='emailVerified'):  # 'emailVerified'
     return not auth.get_account_info(session['user']['idToken'])['users'][0][key]
 
 def update_df(excel_id, excel_amount):
-    _index = balanceDf.index[balanceDf['EmpId'] == excel_id].tolist()[0]
+    _index = balanceDf.index[balanceDf['EmpId'] == str(excel_id)].tolist()[0]
     print(balanceDf.iloc[_index])
     final = int(balanceDf.iloc[_index]["Current Balance"])
     payed = int(balanceDf.iloc[_index]["Payment Sum (from Apr'22)"])
