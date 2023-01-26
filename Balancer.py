@@ -291,7 +291,7 @@ with setting:
                             uName, uRole = i.val()['Name'], i.val()['Role']  # Getting Name and EmpId of a user
                             opt = ['Simple', 'Viewer', 'Editor', 'Master']  # Getting available Roles
                             opt = [uName + ' - ' + j for j in opt]  # Concatenating Name with Role
-                            roles[i.key()] = st.selectbox(uName, opt, index=opt.index(uName + '-' + uRole), label_visibility='collapsed')  # Getting input
+                            roles[i.key()] = st.selectbox(uName, opt, index=opt.index(uName + ' - ' + uRole), label_visibility='collapsed')  # Getting input
                         btnAssign = st.form_submit_button('Assign')
                         if btnAssign:
                             for i in db.child("Users").get().each():
