@@ -99,17 +99,13 @@ def display_salary():
                 tbody th {display:none}
                 </style>
                 """
-
     # Inject CSS with Markdown
     _col1.markdown(hide_table_row_index, unsafe_allow_html=True)
-    st.write(salaryDf)
-    st.write(salaryDf.index[salaryDf['EmpId'] == empId])
     _index = salaryDf.index[salaryDf['EmpId'] == empId].tolist()[0]
     _title, _data = list(salaryDf.columns), list(salaryDf.iloc[_index])
     _df = pd.DataFrame(list(zip(_title[1:], _data[1:])))
     _df.columns = [_title[0], _data[0]]
     _col1.table(_df)
-
     _col2.dataframe(paymentDf.loc[paymentDf['EmpId'] == empId])
 
 def display_all(title, sheet, key):
@@ -272,7 +268,7 @@ with balances:
 
 with salary:
     if everything_alright('salary and payment details'):
-        salaryDf = get_sheet('SalarySheet'), get_sheet('BalanceSheet'), get_sheet('Payments')
+        salaryDf, balanceDf, paymentDf = get_sheet('SalarySheet'), get_sheet('BalanceSheet'), get_sheet('Payments')
         if role == 'Simple': display_salary()
         else:
             personal, allSalary = st.tabs(['Personal', 'All'])
